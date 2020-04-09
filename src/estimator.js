@@ -35,9 +35,9 @@ const covid19ImpactEstimator = (data) => {
         periodType
     );
     let severeCasesByRequestedTime = Math.trunc(0.15 * infectionsByRequestedTime);
-    const availableBeds = Math.trunc(0.35 * totalHospitalBeds);
+    const availableBeds = 0.35 * totalHospitalBeds;
 
-    let hospitalBedsByRequestedTime = availableBeds - severeCasesByRequestedTime;
+    let hospitalBedsByRequestedTime = Math.trunc(availableBeds - severeCasesByRequestedTime);
     let casesForICUByRequestedTime = Math.trunc(0.05 * infectionsByRequestedTime);
     let casesForVentilatorsByRequestedTime = Math.trunc(0.02 * infectionsByRequestedTime);
 
@@ -61,8 +61,8 @@ const covid19ImpactEstimator = (data) => {
 
     currentlyInfected = reportedCases * 50;
     infectionsByRequestedTime = calcInfectedByTime(currentlyInfected, timeToElapse, periodType);
-    severeCasesByRequestedTime = Math.trunc(0.15 * infectionsByRequestedTime);
-    hospitalBedsByRequestedTime = availableBeds - severeCasesByRequestedTime;
+    severeCasesByRequestedTime = 0.15 * infectionsByRequestedTime;
+    hospitalBedsByRequestedTime = Math.trunc(availableBeds - severeCasesByRequestedTime);
     casesForICUByRequestedTime = Math.trunc(0.05 * infectionsByRequestedTime);
     casesForVentilatorsByRequestedTime = Math.trunc(0.02 * infectionsByRequestedTime);
     dollarsInFlight = (infectionsByRequestedTime
