@@ -24,7 +24,7 @@ const covid19ImpactEstimator = (data) => {
         const estimatedInfectionsOverTime = currentlyInfected
             * (2 ** Math.trunc((estimatedTimeConvert / 3)));
 
-        return Math.trunc(estimatedInfectionsOverTime);
+        return estimatedInfectionsOverTime;
     };
 
     let currentlyInfected = reportedCases * 10;
@@ -51,7 +51,7 @@ const covid19ImpactEstimator = (data) => {
     );
 
     const impact = {
-        currentlyInfected,
+        currentlyInfected: Math.trunc(currentlyInfected),
         infectionsByRequestedTime,
         severeCasesByRequestedTime,
         hospitalBedsByRequestedTime,
@@ -76,7 +76,7 @@ const covid19ImpactEstimator = (data) => {
     );
 
     const severeImpact = {
-        currentlyInfected,
+        currentlyInfected: Math.trunc(currentlyInfected),
         infectionsByRequestedTime,
         severeCasesByRequestedTime,
         hospitalBedsByRequestedTime,
